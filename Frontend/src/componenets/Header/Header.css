@@ -1,0 +1,12 @@
+/*--navbar--*/
+.navFirst{
+    width: 100%;
+    height:45px;
+    background-color: #2B7786;
+}
+
+.navSecond{
+    width: 100%;
+    height: 90px;
+    background-color: #328090;
+}
