@@ -1,0 +1,22 @@
+.departmentlist {
+    display: flex;
+    width: 100%;
+    .departmentlist-container {
+        flex: 6;
+    }
+    .departmentlist-nodataContainer {
+        flex: 6;
+        padding: 40px;
+
+        .departmentForm {
+            margin-top: 30px;
+        }
+        .nodata-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #b21807;
+            height: 300px;
+        }
+    }
+}

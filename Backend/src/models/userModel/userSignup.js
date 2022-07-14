@@ -5,13 +5,13 @@ const userSignupDetailsSchema = new mongoose.Schema(
         email: {
             type: String,
             required: true,
-            unique: true,
+            unique:true
         },
 
-        phoneNumber: {
-            type: Number,
+        phone: {
+            type: String,
             required: true,
-            unique: true,
+            
         },
         password: {
             type: String,
@@ -23,11 +23,11 @@ const userSignupDetailsSchema = new mongoose.Schema(
             default: false,
             required: true,
         },
-        userProfileInfo: {
-            type: mongoose.Schema.Types.ObjectId,
-            // required:true,
-            ref: "userProfileInfo",
-        },
+        // userProfileInfo: {
+        //     type: mongoose.Schema.Types.ObjectId,
+        //     // required:true,
+        //     ref: "userProfileInfo",
+        // },
     },
     {
         timestamps: true,

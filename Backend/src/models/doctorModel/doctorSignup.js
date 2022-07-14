@@ -1,52 +1,40 @@
 import mongoose from "mongoose";
 
-const doctorDetailsSchema = new mongoose.Schema(
+const doctorSignupDetailsSchema = new mongoose.Schema(
     {
+        name: {
+            type: String,
+            required: true,
+        },
         email: {
             type: String,
             required: true,
             unique: true,
         },
-
         password: {
             type: String,
             required: true,
         },
-        name: {
+        gender: {
             type: String,
             required: true,
         },
-        role: {
-            type: String,
-            required: true,
-        },
-        qualification: {
-            type: [String],
-            required: true,
-        },
-        opTime: {
-            day: {
-                type: [String],
-                required: true,
-            },
-            time: {
-                type: [String],
-                required: true,
-            },
-        },
-        expertise: {
-            type: [String],
-            required: true,
-        },
-        department: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "department",
-        },
-
-        phoneNumber: {
+        phone: {
             type: Number,
             required: true,
             unique: true,
+        },
+
+        department: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "departmentDetails",
+            // type: String,
+            // required: true,
+        },
+        isBlocked: {
+            type: Boolean,
+            default: false,
+            required: true,
         },
     },
     {
@@ -54,5 +42,5 @@ const doctorDetailsSchema = new mongoose.Schema(
     }
 );
 
-const doctorDetails = mongoose.model("doctorDetails", doctorDetailsSchema);
-export default doctorDetails;
+const doctorSignupDetails = mongoose.model("doctorSignupDetails", doctorSignupDetailsSchema);
+export default doctorSignupDetails;

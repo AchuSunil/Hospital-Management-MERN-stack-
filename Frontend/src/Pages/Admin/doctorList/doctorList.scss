@@ -1,0 +1,23 @@
+.doctorlist {
+    display: flex;
+    width: 100%;
+    .doctorlist-container {
+        flex: 6;
+    }
+    .doctorlist-nodataContainer {
+        flex: 6;
+        padding: 40px;
+
+        .doctorForm{
+            margin-top: 30px;
+        }
+        .nodata-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #b21807;
+            height: 300px;
+        }
+    }
+   
+}

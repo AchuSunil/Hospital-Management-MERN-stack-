@@ -12,7 +12,6 @@ const adminSignupDetailsSchema = new mongoose.Schema(
         isAdmin: {
             type: Boolean,
             default: true,
-            required: true,
         },
     },
     {

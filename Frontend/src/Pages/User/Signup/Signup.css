@@ -1,0 +1,92 @@
+.signup {
+    margin-top: 90px;
+    background-color: white;
+    box-sizing: border-box;
+    margin-bottom: 2%;
+}
+.main-container {
+    display: flex;
+}
+.signup-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+.signup-form {
+    width: 350px;
+    height:100%;
+    border-radius: 10px;
+    background-color: #c7ebe5;
+    box-shadow: -6px 6px 5px #f2f2f2, 6px -6px 5px #ffffff;
+}
+.signup-img {
+    flex: 1;
+    margin-left: 10px;
+}
+
+.signup-heading {
+    margin-top: 15px;
+    color: #37839a;
+    text-align: center;
+    font-weight: 600;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+.email-field,
+.password-field {
+    text-align: center;
+    margin: 30px;
+}
+
+.signup-button {
+    text-align: center;
+}
+.signup-button Button {
+    background-color: #47a895;
+    border: none;
+    font-size: 15px;
+    color: white;
+}
+
+.signupBtn:hover {
+    background-color: #2b7786;
+    color: white;
+}
+
+/*---input fields--*/
+
+.email-field input,
+.password-field input {
+    border-radius: 5px;
+    border: none;
+    height: 45px;
+    padding-left: 25px;
+    background-color: white;
+}
+::placeholder {
+    color: rgb(210, 210, 210);
+}
+
+.email-field input:focus {
+    outline: 2px solid #2b7786;
+}
+.password-field input:focus {
+    outline: 2px solid #2b7786;
+}
+
+/*---signup image---*/
+.signup-img img {
+    width: 100%;
+    height: 100%;
+}
+
+.loginLink {
+    font-size: 15px;
+    color: grey;
+    text-decoration: none;
+}
+
+.error {
+    font-size: 15px;
+    color: red;
+}

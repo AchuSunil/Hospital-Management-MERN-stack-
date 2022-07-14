@@ -1,6 +1,6 @@
 import express from "express";
 import { loginDoctor} from "../controllers/doctorController.js";
-import { verifyToken, verifyUser } from "../utils/verifyToken.js";
+
 
 const router = express.Router();
 
@@ -10,11 +10,11 @@ const router = express.Router();
 router.route("/doctor/signin").post(loginDoctor);
 
 
-router.get("/doctor/checkToken", verifyToken, (req, res) => {
+router.get("/doctor/checkToken", (req, res) => {
     res.status(200).send("you are authenticated");
 });
 
-router.get("/doctor/checkToken/:id", verifyUser, (req, res) => {
+router.get("/doctor/checkToken/:id", (req, res) => {
     res.status(200).send("you are authenticated");
 });
 export default router;

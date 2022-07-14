@@ -1,0 +1,28 @@
+/*--navbar--*/
+.navbar {
+    background-color: #2b7786;
+}
+.text-color {
+    color: white;
+    font-family: "Times New Roman", Times, serif;
+    border: 1px white;
+    font-size: 15px;
+    text-decoration: none;
+}
+.text-color .link {
+    text-decoration: none;
+    color: white;
+}
+
+.departments {
+    text-decoration: none;
+    color: black;
+}
+#navbarScrollingDropdown {
+    color: white;
+    font-size: 15px;
+    font-family: "Times New Roman", Times, serif;
+}
+.hospitalLogo {
+    color: aliceblue;
+}

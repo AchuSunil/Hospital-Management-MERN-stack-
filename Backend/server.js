@@ -5,13 +5,14 @@ import user from "./src/routes/user.js";
 import doctor from "./src/routes/doctor.js";
 import admin from "./src/routes/admin.js";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 
 const app = express();
 dotenv.config();
 
 //Middlewares
-
+app.use(cors())
 app.use(cookieParser())
 app.use(express.json());
 
@@ -33,7 +34,8 @@ app.use((err, req, res, next) => {
 
 const PORT = 5000;
 
-app.listen(process.env.PORT || PORT, () => {
+app.listen(PORT, () => {
     connectDataBase();
     console.log("Connected to backend");
+    console.log(`Running on port ${PORT}`)
 });

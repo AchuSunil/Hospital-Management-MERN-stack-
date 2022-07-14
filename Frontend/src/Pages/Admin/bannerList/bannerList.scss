@@ -1,0 +1,22 @@
+.bannerlist {
+    display: flex;
+    width: 100%;
+    .bannerlist-container {
+        flex: 6;
+    }
+    .bannerlist-nodataContainer {
+        flex: 6;
+        padding: 40px;
+
+        .bannerForm {
+            margin-top: 30px;
+        }
+        .nodata-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #b21807;
+            height: 300px;
+        }
+    }
+}
