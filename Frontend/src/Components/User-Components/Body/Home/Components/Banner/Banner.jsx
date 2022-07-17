@@ -3,7 +3,7 @@ import { Carousel } from "react-bootstrap";
 
 function Banner() {
     return (
-        <Carousel style={{ marginTop: "68px" }}>
+        <Carousel style={{ marginTop: "62px" }}>
             <Carousel.Item interval={800}>
                 <img
                     className="d-block w-100"

@@ -4,7 +4,7 @@
 }
 .text-color {
     color: white;
-    font-family: "Times New Roman", Times, serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     border: 1px white;
     font-size: 15px;
     text-decoration: none;
@@ -21,7 +21,8 @@
 #navbarScrollingDropdown {
     color: white;
     font-size: 15px;
-    font-family: "Times New Roman", Times, serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
 }
 .hospitalLogo {
     color: aliceblue;

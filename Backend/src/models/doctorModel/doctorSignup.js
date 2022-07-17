@@ -26,10 +26,10 @@ const doctorSignupDetailsSchema = new mongoose.Schema(
         },
 
         department: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "departmentDetails",
-            // type: String,
-            // required: true,
+            // type: mongoose.Schema.Types.ObjectId,
+            // ref: "departmentDetails",
+            type: String,
+            required: true,
         },
         isBlocked: {
             type: Boolean,

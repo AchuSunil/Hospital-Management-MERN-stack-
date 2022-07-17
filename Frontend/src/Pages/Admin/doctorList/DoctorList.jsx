@@ -13,12 +13,16 @@ const DoctorList = () => {
 
     const getDoctors = async () => {
         const adminInfo = localStorage.getItem("adminInfo");
+        if (!adminInfo) return navigate("/admin");
 
-        if (adminInfo) {
+        const info = JSON.parse(adminInfo);
+
+        if (info.token) {
             try {
                 const config = {
                     headers: {
                         "Content-type": "application/json",
+                        "x-access-token": info.token,
                     },
                 };
 
@@ -26,10 +30,10 @@ const DoctorList = () => {
                 setData(data);
             } catch (error) {
                 console.log(error.response.data.message);
+                navigate('/admin')
+                localStorage.removeItem("adminInfo");
             }
-        } else {
-            navigate("/admin");
-        }
+        } 
     };
 
     useEffect(() => {

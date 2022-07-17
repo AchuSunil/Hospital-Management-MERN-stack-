@@ -94,7 +94,7 @@ const DepartmentForm = (props) => {
                                 />
                             </Grid>
                         </Grid>
-                        {error && <p style={{ color: "red", fontSize: "12px" }}>{error}</p>}
+                        {error && <p style={{ color: "#ff726f", fontSize: "12px" }}>{error}</p>}
                         <DialogActions>
                             <Button variant="contained" size="small" color="warning" onClick={handleCancel}>
                                 Cancel

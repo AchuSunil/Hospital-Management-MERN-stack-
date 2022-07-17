@@ -11,8 +11,8 @@ const AdminLogin = () => {
     // const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
+    //validations
     const formSchema = Yup.object().shape({
-        //validations
         email: Yup.string().required("*Email Required").email("*Enter a valid email"),
         password: Yup.string()
             .required("*Password  Required")
@@ -29,11 +29,12 @@ const AdminLogin = () => {
     const navigate = useNavigate();
     useEffect(() => {
         const adminInfo = localStorage.getItem("adminInfo");
-        console.log(adminInfo, "///adminInfo");
-        if (adminInfo) {
+        if (!adminInfo) return navigate("/admin");
+
+        const info = JSON.parse(adminInfo);
+
+        if (info.token) {
             navigate("/admin/dashboard");
-        } else {
-            navigate("/admin");
         }
     }, [navigate]);
 
@@ -46,9 +47,10 @@ const AdminLogin = () => {
                 },
             };
             const adminInfo = await AXIOS.post("admin/signin", data, config);
+
             //Storing adminInfo from Back-End to the Local storage
-            localStorage.setItem("adminInfo", JSON.stringify(adminInfo.data));
-            if (localStorage.adminInfo) {
+            if (adminInfo.data.token) {
+                localStorage.setItem("adminInfo", JSON.stringify(adminInfo.data));
                 navigate("/admin/dashboard");
             }
         } catch (error) {
@@ -66,7 +68,7 @@ const AdminLogin = () => {
                         <LoginRoundedIcon style={{ color: "white", fontSize: "30px" }} />
                         <h3 className="admin-login-heading">Welcome admin</h3>
                     </div>
-                    <div style={{ textAlign: "center" }}>{error && <p style={{ color: "red" }}>{error}</p>}</div>
+                    <div style={{ textAlign: "center" }}>{error && <p style={{ color: "#ff726f" }}>{error}</p>}</div>
                     <div className="email-field">
                         <input type="text" {...register("email")} placeholder="Enter Your Email Address" />
                         <p className="error">{errors.email?.message}</p>

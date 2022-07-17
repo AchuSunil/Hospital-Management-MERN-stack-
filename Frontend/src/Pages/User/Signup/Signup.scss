@@ -1,0 +1,115 @@
+.typewritter-container {
+    margin-top: 6%;
+    margin-bottom: 1%;
+    box-sizing: border-box;
+    background-color: white;
+    .typewritter {
+        display: flex;
+        justify-content: center;
+    }
+}
+/*Signup section*/
+@at-root .signup-main-container {
+    display: flex;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    .signup-container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        .signup-form {
+            width: 21.875rem;
+            height: 31rem;
+            border-radius: 10px;
+            background-color: #ffff;
+            border: 1px solid lightseagreen;
+            box-shadow: -6px 6px 5px #f2f2f2, 6px -6px 5px #ffffff;
+            .signup-heading {
+                margin-top: 15px;
+                color: #37839a;
+                text-align: center;
+                font-weight: 600;
+                font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+            }
+            .signup-name-field,
+            .signup-email-field,
+            .signup-password-field {
+                text-align: center;
+                margin: 0 50px 0 50px;
+                border: 1px solid #2b77867a;
+                border-radius: 5px;
+
+                ::placeholder {
+                    color: lightgray;
+                }
+
+                input {
+                    border: none;
+                    height: 35px;
+                    color: #37839a;
+                    font-size: 15px;
+                }
+                input:focus {
+                    outline: none;
+                }
+                input:-webkit-autofill {
+                    -webkit-box-shadow: 0 0 0 30px white inset;
+                    box-shadow: 0 0 0 30px white inset;
+                    -webkit-text-fill-color: #37839a;
+                }
+            }
+
+            .gender {
+                display: flex;
+                margin-top: 15px;
+                .genderLabel {
+                    color: #37839a;
+                }
+                .male,
+                .female {
+                    margin-left: 50px;
+                }
+                .inputMale,
+                .inputFemale {
+                    margin-right: 5px;
+                }
+            }
+            .signup-button {
+                text-align: center;
+                margin-top: 25px;
+            }
+            .signup-button Button {
+                background-color: #47a895;
+                border: none;
+                font-size: 15px;
+                color: white;
+            }
+
+            .signupBtn:hover {
+                background-color: #2b7786;
+                color: white;
+            }
+            .loginLink {
+                font-size: 15px;
+                color: grey;
+                text-decoration: none;
+                .loginNow {
+                    color: #37839a;
+                }
+            }
+            .error {
+                margin-left: 50px;
+                font-size: 13px;
+                color: #ff726f;
+            }
+        }
+    }
+    .signup-img {
+        flex: 1;
+        margin-left: 10px;
+        img {
+            width: 90%;
+            height: 100%;
+        }
+    }
+}

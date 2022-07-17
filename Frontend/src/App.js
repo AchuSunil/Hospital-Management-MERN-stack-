@@ -8,7 +8,7 @@ import UserSignup from "./Pages/User/Signup/UserSignup";
 import UserLogin from "./Pages/User/Login/UserLogin";
 import BookAppointment from "./Pages/User/BookAppointment/BookAppointment";
 import Departments from "./Pages/User/Departments/Departments";
-import PageNotFound from "./Pages/PageNotFound/PageNotFound";
+import { PageNotFound } from "./Pages/PageNotFound/PageNotFound";
 
 //*/Pages/Admin
 import Dashboard from "./Pages/Admin/Dashboard/Dashboard";
@@ -17,7 +17,6 @@ import UserList from "./Pages/Admin/userList/UserList";
 import DoctorList from "./Pages/Admin/doctorList/DoctorList";
 import DepartmentList from "./Pages/Admin/departmentList/DepartmentList";
 import BannerList from "./Pages/Admin/bannerList/BannerList";
-
 
 const App = () => {
     return (
@@ -41,8 +40,8 @@ const App = () => {
                     </Route>
                     <Route path="*" element={<PageNotFound />} />
                 </Routes>
+                <ToastContainer />
             </BrowserRouter>
-            <ToastContainer />
         </>
     );
 };

@@ -14,22 +14,26 @@ const BannerList = () => {
 
     const getBanners = async () => {
         const adminInfo = localStorage.getItem("adminInfo");
+        if (!adminInfo) return navigate("/admin");
 
-        if (adminInfo) {
+        const info = JSON.parse(adminInfo);
+
+        if (info.token) {
             try {
                 const config = {
                     headers: {
                         "Content-type": "application/json",
+                        "x-access-token": info.token,
                     },
                 };
 
                 const { data } = await AXIOS.get("/admin/getBannerList", config);
                 setData(data);
             } catch (error) {
-              console.log(error.response.data.message);
+                console.log(error.response.data.message);
+                navigate("/admin");
+                localStorage.removeItem("adminInfo");
             }
-        } else {
-            navigate("/admin");
         }
     };
 

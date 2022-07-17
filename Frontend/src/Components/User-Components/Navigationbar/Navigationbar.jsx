@@ -2,7 +2,11 @@ import React from "react";
 import "./Navigationbar.css";
 import { Navbar, Nav, NavDropdown, Container, Button } from "react-bootstrap";
 import { NavLink, useNavigate } from "react-router-dom";
-import LocalHospitalRoundedIcon from '@mui/icons-material/LocalHospitalRounded';
+import LocalHospitalRoundedIcon from "@mui/icons-material/LocalHospitalRounded";
+
+//reduxtoolkit
+import { useDispatch, useSelector } from "react-redux";
+import {LoggedMenu} from "./relatedComponents/LoggedMenu";
 
 const departments = [
     { id: 1, name: "Oncology" },
@@ -10,14 +14,16 @@ const departments = [
 ];
 
 const Navigationbar = () => {
+    // const dispatch = useDispatch()
     const navigate = useNavigate();
-
+    const { user } = useSelector((state) => state.user);
     return (
         <Navbar className="navbar" expand="lg" fixed="top">
             <Container>
-            <span className="hospitalLogo"><LocalHospitalRoundedIcon/></span>
-                <Navbar.Brand className="ms-3 me-5 text-color fs-3">
-                  
+                <span className="hospitalLogo">
+                    <LocalHospitalRoundedIcon />
+                </span>
+                <Navbar.Brand className="ms-1 me-5 text-color fs-4">
                     <NavLink className="link" to="/">
                         Health Care Hospital
                     </NavLink>
@@ -51,20 +57,29 @@ const Navigationbar = () => {
                             <NavDropdown.Item href="#action4">Health Packages</NavDropdown.Item>
                             <NavDropdown.Item href="#action4">Contact Us</NavDropdown.Item>
                         </NavDropdown>
-                        <div className="auth">
-                            <Button
-                                className="me-3"
-                                variant="outline-light"
-                                onClick={() => {
-                                    navigate("/Login");
-                                }}
-                            >
-                                Login
-                            </Button>
-                            <Button variant="outline-light"  onClick={() => {
-                                    navigate("/Signup");
-                                }}>Signup</Button>
-                        </div>
+                        {user ? (
+                            <LoggedMenu name={user.name}/>
+                        ) : (
+                            <div className="auth">
+                                <Button
+                                    className="me-3"
+                                    variant="outline-light"
+                                    onClick={() => {
+                                        navigate("/Login");
+                                    }}
+                                >
+                                    Login
+                                </Button>
+                                <Button
+                                    variant="outline-light"
+                                    onClick={() => {
+                                        navigate("/Signup");
+                                    }}
+                                >
+                                    Signup
+                                </Button>
+                            </div>
+                        )}
                     </Nav>
                 </Navbar.Collapse>
             </Container>

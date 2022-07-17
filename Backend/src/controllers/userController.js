@@ -9,38 +9,42 @@ import { generateToken } from "../utils/generateToken.js";
  * @route POST /signup
  */
 export const registerUser = async (req, res, next) => {
-    console.log(req.body);
     try {
-        const { email, phone, password } = req.body;
+        const { name, email, gender, phone, password } = req.body;
         const user = await userSignupDetails.findOne({
             $or: [{ email }, { phone }],
         });
         if (user) {
+            console.log("user und");
             if (user.email === email) {
+                console.log("user email und");
+
                 return next(createError(409, "This Email is already registered"));
             } else if (user.phone === phone) {
-                return next(createError(409, "This phoneNumber is already registered"));
+                console.log("user phone und");
+
+                return next(createError(409, "This Phone Number is already registered"));
             }
         } else {
             console.log("new user created");
             const salt = bcrypt.genSaltSync(10);
             const hash = bcrypt.hashSync(password, salt);
             const newUserSignupDetails = new userSignupDetails({
+                name,
                 email,
+                gender,
                 phone,
                 password: hash,
             });
 
-             await newUserSignupDetails.save().then(()=>{
-
-                 res.status(200).json({message:"registered successfull"});
-             });
-
+            const userRegisterDetails = await newUserSignupDetails.save();
+            if (userRegisterDetails) {
+                res.status(200).json({ message: "Account Registered Successfully" });
+            }
         }
     } catch (error) {
         console.log(error.message);
         next(error);
-
     }
 };
 
@@ -59,9 +63,18 @@ export const loginUser = async (req, res, next) => {
             const verifiedPassword = await bcrypt.compare(password, user.password);
             if (!verifiedPassword) return next(createError(401, "Invalid password"));
 
-            return res.status(200).json({ _id: user._id, email: user.email, token: generateToken(user._id) });
+            return res
+                .status(200)
+                .json({
+                    _id: user._id,
+                    name: user.name,
+                    email: user.email,
+                    token: generateToken(user._id),
+                    message: "Login Successfull",
+                });
         }
     } catch (error) {
+        console.log(error);
         next(error);
     }
 };

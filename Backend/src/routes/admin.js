@@ -9,7 +9,7 @@ import {
     removeDoctor,
     addDepartment,
     getDepartmentList,
-    removeDepartment,
+    removeDepartment, 
     addBanner,
     getBannerList,
     removeBanner,
@@ -17,52 +17,41 @@ import {
     getDepartments
 } from "../controllers/adminController.js";
 
-const router = express.Router();
+import { adminProtect } from "../middlewares/authMiddleware.js";
+     
+//Routes for Admin
+
+const router = express.Router(); 
 
 router.route("/signin").post(loginAdmin);
 
-router.route("/userlist").get(getAllUsers);
+router.route("/getDashboardInfo").get(adminProtect, getDashboardInfo);
 
-router.route("/userBlock/:id").post(blockUser);
+router.route("/userlist").get(adminProtect,getAllUsers);
 
-router.route("/userUnBlock/:id").post(UnblockUser);
+router.route("/userBlock/:id").post(adminProtect,blockUser);
 
-router.route("/addDoctor").post(addDoctor);
+router.route("/userUnBlock/:id").post(adminProtect,UnblockUser);
 
-router.route("/getDoctorList").get(getDoctorList);
+router.route("/addDoctor").post(adminProtect,addDoctor);
 
-router.route("/removeDoctor/:id").post(removeDoctor);
+router.route("/getDoctorList").get(adminProtect,getDoctorList);
 
-router.route("/addDepartment").post(addDepartment);
+router.route("/removeDoctor/:id").post(adminProtect,removeDoctor);
 
-router.route("/getDepartmentList").get(getDepartmentList);
+router.route("/addDepartment").post(adminProtect,addDepartment);
 
-router.route("/removeDepartment/:id").post(removeDepartment);
+router.route("/getDepartmentList").get(adminProtect,getDepartmentList);
 
-router.route("/addBanner").post(addBanner);
+router.route("/removeDepartment/:id").post(adminProtect,removeDepartment);
 
-router.route("/getBannerList").get(getBannerList);
+router.route("/addBanner").post(adminProtect,addBanner);
 
-router.route("/removeBanner/:id").post(removeBanner);
+router.route("/getBannerList").get(adminProtect,getBannerList);
 
-router.route("/getDashboardInfo").get(getDashboardInfo);
+router.route("/removeBanner/:id").post(adminProtect,removeBanner);
 
-router.route("/getDepartments").get(getDepartments);
+router.route("/getDepartments").get(adminProtect,getDepartments);
 
-
-
-
-
-
-
-
-
-router.get("/checkDoctor", (req, res) => {
-    res.status(200).send("you are authenticated");
-});
-
-router.get("/checkDoctor/:id", (req, res) => {
-    res.status(200).send("you are authenticated");
-});
 
 export default router;

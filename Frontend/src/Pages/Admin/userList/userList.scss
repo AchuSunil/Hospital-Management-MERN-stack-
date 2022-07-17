@@ -4,4 +4,16 @@
     .userlist-container {
         flex: 6;
     }
+    .userlist-nodataContainer {
+        flex: 6;
+        padding: 40px;
+
+        .nodata-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #b21807;
+            height: 300px;
+        }
+    }
 }

@@ -1,47 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./widgets.scss";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-// import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
 import AddBoxIcon from "@mui/icons-material/AddBox";
-import { Link, useNavigate } from "react-router-dom";
-import AXIOS from "../../../axios";
+import { Link } from "react-router-dom";
 
-const Widgets = ({ type }) => {
-    const [user, setUser] = useState("");
-    const [doctor, setDoctor] = useState("");
-    const [department, setDepartment] = useState("");
-
-    const navigate = useNavigate();
-
-    const getDashboardInfo = async () => {
-        const adminInfo = localStorage.getItem("adminInfo");
-
-        if (adminInfo) {
-            try {
-                const config = {
-                    headers: {
-                        "Content-type": "application/json",
-                    },
-                };
-
-                const {data} = await AXIOS.get("/admin/getDashboardInfo", config);
-                if (data) {
-                    setUser(data.user);
-                    setDoctor(data.doctor);
-                    setDepartment(data.department)
-                }
-            } catch (error) {
-                console.log(error.response.data.message);
-            }
-        } else {
-            navigate("/admin");
-        }
-    };
-
-    useEffect(() => {
-        getDashboardInfo();
-    }, [user,doctor,department]);
-
+const Widgets = ({ count,type }) => {
+    
     let data;
 
     switch (type) {
@@ -106,8 +70,8 @@ const Widgets = ({ type }) => {
             <div className="left">
                 <span className="title">{data.title}</span>
                 <span className="counter">
-                    {data.isUser && user} {data.isDoctor && doctor}
-                    {data.isDepartment && department}
+                    {data.isUser && count} {data.isDoctor && count}
+                    {data.isDepartment && count}
                 </span>
                 <Link className="link"to={data.link}>{data.linkName}</Link>
             </div>

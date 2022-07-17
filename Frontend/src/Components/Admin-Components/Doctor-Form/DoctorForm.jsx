@@ -18,6 +18,7 @@ import { useEffect } from "react";
 export const DoctorForm = (props) => {
     const [open, setOpen] = React.useState(false);
     const [departments, setDepartments] = React.useState([]);
+    const [error, setError] = React.useState("");
     const [formData, setFormData] = React.useState({
         name: "",
         email: "",
@@ -55,6 +56,10 @@ export const DoctorForm = (props) => {
                 }
             } catch (error) {
                 console.log(error.response.data.message);
+                setError(error.response.data.message);
+                setTimeout(() => {
+                    setError("")
+                }, 2000);
             }
         } else {
             navigate("/admin");
@@ -125,7 +130,7 @@ export const DoctorForm = (props) => {
             </Button>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle style={{ color: "#1B65A7" }}>Doctor Details</DialogTitle>
-
+              {error && <p style={{color:"#ff726f",textAlign:"center"}}>{error}</p>}
                 <form onSubmit={onSubmit}>
                     <DialogContent dividers>
                         <Grid container spacing={3}>
@@ -191,14 +196,20 @@ export const DoctorForm = (props) => {
                                     <MenuItem disabled value="Choose">
                                         Choose
                                     </MenuItem>
-                                    {departments &&
+                                    <MenuItem value="Neurology">Neurology</MenuItem>
+                                    <MenuItem value="Dentist">Dentist</MenuItem>
+                                    <MenuItem value="Orthopedic">Orthopedic</MenuItem>
+                                    <MenuItem value="Cardiology">Cardiology</MenuItem>
+                                    <MenuItem value="Dermatology">Dermatology</MenuItem>
+
+                                    {/* {departments &&
                                         departments.map((obj) => {
                                             return (
                                                 <MenuItem key={obj._id} value={obj._id}>
                                                     {obj.name}
                                                 </MenuItem>
                                             );
-                                        })}
+                                        })} */}
                                 </Select>
                             </Grid>
                             <Grid item xs={12} sm={6}>

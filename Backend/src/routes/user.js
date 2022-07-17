@@ -1,6 +1,6 @@
 import express from "express";
 import { registerUser, loginUser, updateUserProfile } from "../controllers/userController.js";
-import {protect} from "../middlewares/authMiddleware.js"
+// import {protect} from "../middlewares/authMiddleware.js"
 
 const router = express.Router();
 
@@ -21,9 +21,7 @@ router.route("/signin").post(loginUser);
 /**
  * test data
  */
-router.route("/updateUserProfile/:id").post(protect, updateUserProfile);
+router.route("/updateUserProfile/:id").post( updateUserProfile);
 
-router.get("/checkToken", protect, (req, res) => {
-    res.status(200).send("you are authenticated"); 
-});
+
 export default router;
