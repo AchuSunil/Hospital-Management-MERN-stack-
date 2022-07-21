@@ -4,7 +4,7 @@ import Datatable from "../../../Components/Admin-Components/Datatable/Datatable"
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import AXIOS from "../../../axios";
-import { DoctorForm } from "../../../Components/Admin-Components/Doctor-Form/DoctorForm";
+import DoctorForm from "../../../Components/Admin-Components/Doctor-Form/DoctorForm";
 
 const DoctorList = () => {
     const [data, setData] = useState([]);

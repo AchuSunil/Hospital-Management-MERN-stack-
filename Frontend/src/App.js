@@ -1,47 +1,55 @@
+import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-//*/Pages/User
-import Home from "./Pages/User/Home/Home";
-import UserSignup from "./Pages/User/Signup/UserSignup";
-import UserLogin from "./Pages/User/Login/UserLogin";
-import BookAppointment from "./Pages/User/BookAppointment/BookAppointment";
-import Departments from "./Pages/User/Departments/Departments";
-import { PageNotFound } from "./Pages/PageNotFound/PageNotFound";
+//->Pages/User
+const Home = React.lazy(() => import("./Pages/User/Home/Home"));
+const UserSignup = React.lazy(() => import("./Pages/User/Signup/UserSignup"));
+const UserLogin = React.lazy(() => import("./Pages/User/Login/UserLogin"));
+const BookAppointment = React.lazy(() => import("./Pages/User/BookAppointment/BookAppointment"));
+const Departments = React.lazy(() => import("./Pages/User/Departments/Departments"));
 
-//*/Pages/Admin
-import Dashboard from "./Pages/Admin/Dashboard/Dashboard";
-import AdminLogin from "./Pages/Admin/Login/AdminLogin";
-import UserList from "./Pages/Admin/userList/UserList";
-import DoctorList from "./Pages/Admin/doctorList/DoctorList";
-import DepartmentList from "./Pages/Admin/departmentList/DepartmentList";
-import BannerList from "./Pages/Admin/bannerList/BannerList";
+//->Pages/Admin
+const Dashboard = React.lazy(() => import("./Pages/Admin/Dashboard/Dashboard"));
+const AdminLogin = React.lazy(() => import("./Pages/Admin/Login/AdminLogin"));
+const UserList = React.lazy(() => import("./Pages/Admin/userList/UserList"));
+const DoctorList = React.lazy(() => import("./Pages/Admin/doctorList/DoctorList"));
+const DepartmentList = React.lazy(() => import("./Pages/Admin/departmentList/DepartmentList"));
+const BannerList = React.lazy(() => import("./Pages/Admin/bannerList/BannerList"));
+
+//->Error-Page
+const  PageNotFound  = React.lazy(() => import("./Pages/PageNotFound/PageNotFound")); 
+
+//->Loader for react.lazy loading
+const Loader = React.lazy(() => import("./Components/Loader/Loader"));
 
 const App = () => {
     return (
-        <>
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/">
-                        <Route index element={<Home />} />
-                        <Route path="login" element={<UserLogin />} />
-                        <Route path="Signup" element={<UserSignup />} />
-                        <Route path="departments/:id" element={<Departments />} />
-                        <Route path="bookappointment" element={<BookAppointment />} />
-                    </Route>
-                    <Route path="/admin">
-                        <Route index element={<AdminLogin />} />
-                        <Route path="dashboard" element={<Dashboard />} />
-                        <Route path="userlist" element={<UserList />} />
-                        <Route path="doctorlist" element={<DoctorList />} />
-                        <Route path="departmentlist" element={<DepartmentList />} />
-                        <Route path="bannerlist" element={<BannerList />} />
-                    </Route>
-                    <Route path="*" element={<PageNotFound />} />
-                </Routes>
-                <ToastContainer />
-            </BrowserRouter>
+        <> 
+            <Suspense fallback={<Loader />}>
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/">
+                            <Route index element={<Home />} />
+                            <Route path="login" element={<UserLogin />} />
+                            <Route path="Signup" element={<UserSignup />} />
+                            <Route path="departments/:id" element={<Departments />} />
+                            <Route path="bookappointment" element={<BookAppointment />} />
+                        </Route>
+                        <Route path="/admin">
+                            <Route index element={<AdminLogin />} />
+                            <Route path="dashboard" element={<Dashboard />} />
+                            <Route path="userlist" element={<UserList />} />
+                            <Route path="doctorlist" element={<DoctorList />} />
+                            <Route path="departmentlist" element={<DepartmentList />} />
+                            <Route path="bannerlist" element={<BannerList />} />
+                        </Route>
+                        <Route path="*" element={<PageNotFound />} />
+                    </Routes>
+                    <ToastContainer />
+                </BrowserRouter>
+            </Suspense>
         </>
     );
 };

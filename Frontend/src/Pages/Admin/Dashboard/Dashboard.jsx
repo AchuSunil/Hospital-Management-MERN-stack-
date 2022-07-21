@@ -6,7 +6,7 @@ import Chart from "../../../Components/Admin-Components/Chart/Chart";
 import { useNavigate } from "react-router-dom";
 import AXIOS from "../../../axios";
 
-const Dashboard = () => {
+export const Dashboard = () => {
     const [user, setUser] = useState("");
     const [doctor, setDoctor] = useState("");
     const [department, setDepartment] = useState("");
@@ -62,5 +62,6 @@ const Dashboard = () => {
         </div>
     );
 };
+
 
 export default Dashboard;

@@ -1,5 +1,6 @@
 export const toastifyInfo = {
     success: {
+        toastId: 'success',
         position: "bottom-center",
         autoClose: 1000,
         hideProgressBar: false,
@@ -10,6 +11,7 @@ export const toastifyInfo = {
         theme: "colored",
     },
     error: {
+        toastId: 'error',
         position: "bottom-center",
         autoClose: 1000,
         hideProgressBar: false,
@@ -18,6 +20,5 @@ export const toastifyInfo = {
         draggable: true,
         progress: undefined,
         theme: "colored",
-
     },
 };

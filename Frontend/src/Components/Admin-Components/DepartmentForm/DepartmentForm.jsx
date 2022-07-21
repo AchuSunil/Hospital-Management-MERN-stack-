@@ -12,7 +12,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router-dom";
 import AXIOS from "../../../axios";
 
-const DepartmentForm = (props) => {
+ const DepartmentForm = (props) => {
     const [open, setOpen] = React.useState(false);
     const [deptName, setDeptName] = React.useState("");
     const [error, setError] = React.useState("");
@@ -111,3 +111,4 @@ const DepartmentForm = (props) => {
 };
 
 export default DepartmentForm;
+

@@ -2,7 +2,7 @@ import React from "react";
 import "./Contents.css";
 
 
-function Contents() {
+ const Contents=()=> {
     return (
         <main className="content-main ">
             <div className="left-main ">

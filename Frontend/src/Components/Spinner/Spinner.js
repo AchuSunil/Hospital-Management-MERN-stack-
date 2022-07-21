@@ -1,9 +1,11 @@
-import "./Spinner.css";
-function Spinner() {
+import "./Spinner.scss";
+import spinnerAnime from '../../Assets/gifs/loading.gif'
+
+const Spinner = ()=> {
     return (
         <>
             <div className="loadingSpinnerContainer">
-                <div className="loadingSpinner"></div>
+                <img className="loadingSpinner" src={spinnerAnime} alt="" draggable={false}/>
             </div>
         </>
     );

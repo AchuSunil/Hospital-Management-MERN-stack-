@@ -8,7 +8,7 @@ const initialState = {
     user: user ? user : null,
     isError: false,
     isSuccess: false,
-    isMessage: "",
+    isMessage: null,
     isLoading: false,
 };
 
@@ -62,6 +62,14 @@ const userReducer = createSlice({
             state.isError = false;
             state.isMessage = null;
         },
+        logout: (state) => {
+            state.user = null;
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.isError = false;
+            state.isMessage = "Logout Successfully";
+            localStorage.removeItem("userInfo");
+        },
     },
     extraReducers: {
         [registerUser.fulfilled]: (state, action) => {
@@ -94,5 +102,5 @@ const userReducer = createSlice({
     },
 });
 
-export const { reset } = userReducer.actions;
+export const { reset ,logout} = userReducer.actions;
 export default userReducer.reducer;

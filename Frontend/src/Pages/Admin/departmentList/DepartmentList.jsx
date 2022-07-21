@@ -69,4 +69,4 @@ const DepartmentList = () => {
     );
 };
 
-export default DepartmentList;
+export default DepartmentList ;

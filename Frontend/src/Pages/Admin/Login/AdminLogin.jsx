@@ -8,7 +8,7 @@ import AXIOS from "../../../axios";
 import { useNavigate } from "react-router-dom";
 
 const AdminLogin = () => {
-    // const [loading, setLoading] = useState(false);
+
     const [error, setError] = useState("");
 
     //validations

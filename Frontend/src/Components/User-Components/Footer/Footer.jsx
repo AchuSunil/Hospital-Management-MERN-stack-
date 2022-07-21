@@ -5,7 +5,7 @@ import CalendarMonthRoundedIcon from "@mui/icons-material/CalendarMonthRounded";
 import AppRegistrationRoundedIcon from '@mui/icons-material/AppRegistrationRounded';
 import './Footer.css'
 
-const Footer = () => {
+ const Footer = () => {
     return (
         <div className="text-center text-light footer" style={{ backgroundColor: "#328090" }}>
             <Container className="p-4 pb-auto">

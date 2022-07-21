@@ -21,7 +21,7 @@ import { useNavigate } from "react-router-dom";
 //<--Other Resources-->
 import { Container } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import { GoogleLogin } from "react-google-login";
+// import { GoogleLogin } from "react-google-login";
 
 const UserLogin = () => {
     const formSchema = Yup.object().shape({
@@ -41,19 +41,18 @@ const UserLogin = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const { user, isLoading, isError, isSuccess, isMessage } = useSelector((state) => state.user);
-
+    const {  isLoading, isError, isSuccess, isMessage } = useSelector((state) => state.user);
     useEffect(() => {
         if (isError) {
             toast.error(isMessage, toastifyInfo.error);
-        } else if (isSuccess) {
+            navigate('/Login')
+        } 
+        if (isSuccess) {
             toast.success(isMessage, toastifyInfo.success);
-            navigate("/");
-        } else if (user) {
             navigate("/");
         }
         dispatch(reset());
-    }, [isError, isSuccess, isMessage]);
+    }, [isError,isMessage,isSuccess]);
 
     const onSubmit = (data) => {
         dispatch(loginUser(data));
@@ -127,3 +126,4 @@ const UserLogin = () => {
 };
 
 export default UserLogin;
+

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Lottie from "react-lottie";
 import error from "../../Assets/lotties/84048-404-page-not-found.json";
 
-export const PageNotFound = () => {
+const PageNotFound = () => {
     const defaultOptions = {
         loop: true,
         autoplay: true,
@@ -25,3 +25,5 @@ export const PageNotFound = () => {
         </>
     );
 };
+
+export default PageNotFound;

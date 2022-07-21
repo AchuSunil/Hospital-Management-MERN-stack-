@@ -9,7 +9,7 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 
 
-const Sidebar = () => {
+ const Sidebar = () => {
 
    const logout = () => {
         localStorage.removeItem("adminInfo");
@@ -79,4 +79,4 @@ const Sidebar = () => {
     );
 };
 
-export default Sidebar;
+export default Sidebar ;

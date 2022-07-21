@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./widgets.scss";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import AddBoxIcon from "@mui/icons-material/AddBox";

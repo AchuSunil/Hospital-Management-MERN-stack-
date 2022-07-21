@@ -3,9 +3,9 @@ import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import swal from "sweetalert";
 import AXIOS from "../../../axios";
-import { DoctorForm } from "../../../Components/Admin-Components/Doctor-Form/DoctorForm";
+import  DoctorForm  from "../../../Components/Admin-Components/Doctor-Form/DoctorForm";
 
-const Datatable = (props) => {
+ const Datatable = (props) => {
     let userColumns;
     if (props.user === "Doctor") {
         userColumns = [

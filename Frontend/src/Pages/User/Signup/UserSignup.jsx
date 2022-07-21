@@ -4,7 +4,7 @@ import "./Signup.scss";
 import { toast } from "react-toastify";
 import { toastifyInfo } from "../../../Assets/toastify/toastifyInfo";
 import Spinner from "../../../Components/Spinner/Spinner";
-import TypeWriterEffect from "react-typewriter-effect";
+import TypeWriterEffect from "react-typewriter-effect"; 
 //<--Images-->
 import LoginImage from "../../../Assets/images/login/login-page-background-right-side.jpg";
 //<--Form Resources-->
@@ -163,3 +163,4 @@ const UserSignup = () => {
 };
 
 export default UserSignup;
+

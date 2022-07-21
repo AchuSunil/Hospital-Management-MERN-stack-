@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import AXIOS from "../../../axios";
 import { useEffect } from "react";
 
-export const DoctorForm = (props) => {
+const DoctorForm = (props) => {
     const [open, setOpen] = React.useState(false);
     const [departments, setDepartments] = React.useState([]);
     const [error, setError] = React.useState("");
@@ -242,3 +242,5 @@ export const DoctorForm = (props) => {
         </div>
     );
 };
+
+export default DoctorForm;

@@ -1,7 +1,7 @@
 import React from "react";
 import { Carousel } from "react-bootstrap";
 
-function Banner() {
+const Banner =()=> {
     return (
         <Carousel style={{ marginTop: "62px" }}>
             <Carousel.Item interval={800}>
@@ -31,12 +31,12 @@ function Banner() {
                 />
 
                 <Carousel.Caption>
-                    {/* <h3>Third slide label</h3>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p> */}
+                  
                 </Carousel.Caption>
             </Carousel.Item>
         </Carousel>
     );
 }
+
 
 export default Banner;

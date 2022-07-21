@@ -1,7 +1,7 @@
 import React from "react";
 // import Navigationbar from "../../Components/Navigationbar/Navigationbar";
 
-function BookAppointment() {
+const BookAppointment = ()=> {
     return (
         <>
             {/* <Navigationbar /> */}

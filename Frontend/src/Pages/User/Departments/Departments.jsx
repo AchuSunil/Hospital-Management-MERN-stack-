@@ -1,7 +1,7 @@
 import React from "react";
 // import Navigationbar from "../../Components/Navigationbar/Navigationbar";
 
-function Departments() {
+const Departments = () => {
     return (
         <>
             {/* <Navigationbar /> */}
@@ -11,3 +11,4 @@ function Departments() {
 }
 
 export default Departments;
+

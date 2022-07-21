@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import AXIOS from "../../../axios";
 import BannerDeptTable from "../../../Components/Admin-Components/Banner-Dept_table/BannerDeptTable";
 
-const BannerList = () => {
+ const BannerList = () => {
     const [data, setData] = useState([]);
     const [refresh, setRefresh] = useState(false);
     const navigate = useNavigate();
@@ -69,4 +69,5 @@ const BannerList = () => {
     );
 };
 
-export default BannerList;
+export default BannerList ;
+
