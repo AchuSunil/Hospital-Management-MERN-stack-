@@ -41,12 +41,15 @@ const DoctorForm = (props) => {
 
     const addDoctor = async (formData) => {
         const adminInfo = localStorage.getItem("adminInfo");
+        if (!adminInfo) return navigate("/admin");
+        const info = JSON.parse(adminInfo);
 
-        if (adminInfo) {
+        if (info.token) {
             try {
                 const config = {
                     headers: {
                         "Content-type": "application/json",
+                        "x-access-token": info.token,
                     },
                 };
 
@@ -68,16 +71,18 @@ const DoctorForm = (props) => {
 
     const getDepartments = async () => {
         const adminInfo = localStorage.getItem("adminInfo");
-        if (adminInfo) {
+        if (!adminInfo) return navigate("/admin");
+        const info = JSON.parse(adminInfo);
+        if (info.token) {
             try {
                 const config = {
                     headers: {
                         "Content-type": "application/json",
+                        "x-access-token": info.token,
                     },
                 };
 
                 const { data } = await AXIOS.get("/admin/getDepartments", config);
-                console.log(data, "////departments");
                 if (data) {
                     setDepartments(data);
                 }

@@ -4,6 +4,7 @@ import swal from "sweetalert";
 import AXIOS from "../../../axios";
 import DepartmentForm from "../DepartmentForm/DepartmentForm";
 import BannerForm from "../BannerForm/BannerForm";
+import './bannerDeptDatatable.scss'
 
 const BannerDeptTable = (props) => {
     let deptColumns;
@@ -14,7 +15,7 @@ const BannerDeptTable = (props) => {
             { field: "name", headerName: "Department Name", width: 470 },
 
             {
-                field: "remove", 
+                field: "remove",
                 headerName: "Remove",
                 width: 120,
                 renderCell: (params) => {
@@ -39,7 +40,7 @@ const BannerDeptTable = (props) => {
                 renderCell: (params) => {
                     return (
                         <div className="cellWithImg">
-                            <img  src={params.row.name} width={100} alt="" />
+                            <img src={params.row.name} width={100} alt="" />
                         </div>
                     );
                 },
@@ -71,9 +72,12 @@ const BannerDeptTable = (props) => {
         }).then(async (willRemove) => {
             if (willRemove) {
                 try {
+                    const adminInfo = localStorage.getItem("adminInfo");
+                    const info = JSON.parse(adminInfo);
                     const config = {
                         headers: {
                             "Content-type": "application/json",
+                            "x-access-token": info.token,
                         },
                     };
 
@@ -98,9 +102,12 @@ const BannerDeptTable = (props) => {
         }).then(async (willRemove) => {
             if (willRemove) {
                 try {
+                    const adminInfo = localStorage.getItem("adminInfo");
+                    const info = JSON.parse(adminInfo);
                     const config = {
                         headers: {
                             "Content-type": "application/json",
+                            "x-access-token": info.token,
                         },
                     };
 
@@ -116,14 +123,15 @@ const BannerDeptTable = (props) => {
     };
 
     const row = props.lists ? props.lists : " ";
+
     return (
         <div className="datatable">
             <div className="tableHeading">
                 <h4 style={{ color: "#1B65A7" }}>{props.name}</h4>
-                {props.departmentForm && <DepartmentForm refresh={props.refresh} setRefresh={props.setRefresh}  />}
-                {props.bannerForm && <BannerForm refresh={props.refresh} setRefresh={props.setRefresh}  />}
+                {props.departmentForm && <DepartmentForm refresh={props.refresh} setRefresh={props.setRefresh} />}
+                {props.bannerForm && <BannerForm refresh={props.refresh} setRefresh={props.setRefresh} />}
             </div>
-
+            
             <DataGrid
                 className="datagrid"
                 rows={row}

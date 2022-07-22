@@ -1,0 +1,17 @@
+.department-main{
+ margin-top: 5%;
+ margin-bottom: 3%;
+  .dept-info-wrapper{
+    margin-top: 2%;
+    .title-info{
+        display: flex;
+        justify-content: space-between;
+    }
+    .dept-details{
+        margin-top: 20px;
+        border: 1px solid #e9e9e9;
+        border-radius: 4px;
+    }
+  }
+}
+

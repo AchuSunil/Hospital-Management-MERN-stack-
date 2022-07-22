@@ -5,11 +5,13 @@ import Widgets from "../../../Components/Admin-Components/Widgets/Widgets";
 import Chart from "../../../Components/Admin-Components/Chart/Chart";
 import { useNavigate } from "react-router-dom";
 import AXIOS from "../../../axios";
+import Loader from "../../../Components/Loader/Loader";
 
 export const Dashboard = () => {
     const [user, setUser] = useState("");
     const [doctor, setDoctor] = useState("");
     const [department, setDepartment] = useState("");
+    const [loading, setLoading] = useState(true);
 
     const navigate = useNavigate();
 
@@ -32,12 +34,17 @@ export const Dashboard = () => {
                     setUser(data.user);
                     setDoctor(data.doctor);
                     setDepartment(data.department);
+                    setLoading(false);
+                } else {
+                    setLoading(false);
                 }
             } catch (error) {
                 console.log(error.response.data.message);
                 navigate("/admin");
                 localStorage.removeItem("adminInfo");
             }
+        }else {
+            console.log("no token ,,something issue with token passing or token verification");
         }
     };
 
@@ -45,9 +52,11 @@ export const Dashboard = () => {
         getDashboardInfo();
     }, []);
 
+    if (loading) {
+        return <Loader />;
+    }
     return (
         <div className="dashboard">
-            {console.log("it's in the component")}
             <Sidebar />
             <div className="dashboardContainer">
                 <div className="widgets">
@@ -62,6 +71,5 @@ export const Dashboard = () => {
         </div>
     );
 };
-
 
 export default Dashboard;

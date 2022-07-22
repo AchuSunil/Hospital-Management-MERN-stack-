@@ -10,25 +10,24 @@ import bannerDetails from "../models/bannerModel/bannerModel.js";
 
 export const loginAdmin = async (req, res, next) => {
     try {
-        const { email ,password} = req.body;
+        const { email, password } = req.body;
         const admin = await adminSignupDetails.findOne({
-            $and: [{ email }, { password}],
+            $and: [{ email }, { password }],
         });
         if (!admin) return next(createError(401, "Invalid Email Address or Password"));
 
-        const token = generateToken(admin._id); 
-        if(!token) return next(createError(409, "Server Token Error"));    
+        const token = generateToken(admin._id);
+        if (!token) return next(createError(409, "Server Token Error"));
 
         return res.status(200).json({ _id: admin._id, email: admin.email, token: generateToken(admin._id) });
     } catch (error) {
         next(error);
     }
-}; 
-    
+};
+
 export const getAllUsers = async (req, res) => {
     try {
-        const users = await userSignupDetails.find({}, { _id: 1, email: 1, phone: 1, isBlocked: 1 });
-
+        const users = await userSignupDetails.find({}, { _id: 1, name: 1, email: 1, phone: 1, gender: 1, isBlocked: 1 });
         res.json(users);
     } catch (error) {
         res.json(error);
@@ -95,7 +94,8 @@ export const addDoctor = async (req, res, next) => {
         });
         if (doctor) {
             if (doctor.email === email) return next(createError(409, "An Account with this Email is already registered"));
-            else if (doctor.phone == phone) return next(createError(409, "An Account with this Phone Number is already registered"));
+            else if (doctor.phone == phone)
+                return next(createError(409, "An Account with this Phone Number is already registered"));
         } else {
             const salt = bcrypt.genSaltSync(10);
             const hashedPassword = bcrypt.hashSync(password, salt);
@@ -155,6 +155,7 @@ export const addDepartment = async (req, res, next) => {
 export const getDepartmentList = async (req, res, next) => {
     try {
         const departmentList = await departmentDetails.find();
+
         if (departmentList) {
             res.json(departmentList);
         }

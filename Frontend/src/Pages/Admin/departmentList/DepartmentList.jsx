@@ -6,10 +6,13 @@ import BannerDeptTable from "../../../Components/Admin-Components/Banner-Dept_ta
 import { useNavigate } from "react-router-dom";
 import AXIOS from "../../../axios";
 import DepartmentForm from "../../../Components/Admin-Components/DepartmentForm/DepartmentForm";
+import Loader from "../../../Components/Loader/Loader";
 
 const DepartmentList = () => {
     const [data, setData] = useState([]);
     const [refresh, setRefresh] = useState(false);
+    const [loading, setLoading] = useState(true);
+
     const navigate = useNavigate();
 
     const getDepartments = async () => {
@@ -28,19 +31,31 @@ const DepartmentList = () => {
                 };
 
                 const { data } = await AXIOS.get("/admin/getDepartmentList", config);
-                setData(data);
+                if (data) {
+                    setData(data);
+                    setLoading(false);
+                } else {
+                    setLoading(false);
+                }
             } catch (error) {
                 console.log(error.response.data.message);
-                navigate('/admin')
+                navigate("/admin");
                 localStorage.removeItem("adminInfo");
             }
-        } 
+        }else {
+            console.log("no token ,,something issue with token passing or token verification");
+        }
     };
 
     useEffect(() => {
         getDepartments();
     }, [refresh]);
 
+  
+
+    if (loading) {
+        return <Loader />;
+    }
     return (
         <div className="departmentlist">
             <Sidebar />
@@ -52,7 +67,7 @@ const DepartmentList = () => {
                         lists={data}
                         name="Department Management"
                         content="Department"
-                        departmentForm={"DepartmentForm"}
+                        departmentForm={"DepartmentForm"} 
                     />
                 </div>
             ) : (
@@ -60,7 +75,7 @@ const DepartmentList = () => {
                     <h4 style={{ color: "#1B65A7" }}>Department Management</h4>
 
                     <div className="departmentForm">
-                        <DepartmentForm refresh={refresh} setRefresh={setRefresh} /> 
+                        <DepartmentForm refresh={refresh} setRefresh={setRefresh} />
                     </div>
                     <div className="nodata-container">No Data</div>
                 </div>
@@ -69,4 +84,4 @@ const DepartmentList = () => {
     );
 };
 
-export default DepartmentList ;
+export default DepartmentList;

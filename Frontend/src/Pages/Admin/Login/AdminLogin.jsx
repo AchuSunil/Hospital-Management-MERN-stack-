@@ -27,13 +27,16 @@ const AdminLogin = () => {
 
     //For Navigation Purpose
     const navigate = useNavigate();
+
     useEffect(() => {
         const adminInfo = localStorage.getItem("adminInfo");
         if (!adminInfo) return navigate("/admin");
 
         const info = JSON.parse(adminInfo);
+       
 
         if (info.token) {
+            console.log("token undo");
             navigate("/admin/dashboard");
         }
     }, [navigate]);

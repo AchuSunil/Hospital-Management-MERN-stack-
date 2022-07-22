@@ -6,10 +6,13 @@ import BannerForm from "../../../Components/Admin-Components/BannerForm/BannerFo
 import { useNavigate } from "react-router-dom";
 import AXIOS from "../../../axios";
 import BannerDeptTable from "../../../Components/Admin-Components/Banner-Dept_table/BannerDeptTable";
+import Loader from "../../../Components/Loader/Loader";
 
- const BannerList = () => {
+const BannerList = () => {
     const [data, setData] = useState([]);
     const [refresh, setRefresh] = useState(false);
+    const [loading, setLoading] = useState(true);
+
     const navigate = useNavigate();
 
     const getBanners = async () => {
@@ -28,12 +31,19 @@ import BannerDeptTable from "../../../Components/Admin-Components/Banner-Dept_ta
                 };
 
                 const { data } = await AXIOS.get("/admin/getBannerList", config);
-                setData(data);
+                if (data) {
+                    setData(data);
+                    setLoading(false);
+                } else {
+                    setLoading(false);
+                }
             } catch (error) {
                 console.log(error.response.data.message);
                 navigate("/admin");
                 localStorage.removeItem("adminInfo");
             }
+        } else {
+            console.log("no token ,,something issue with token passing or token verification");
         }
     };
 
@@ -41,6 +51,9 @@ import BannerDeptTable from "../../../Components/Admin-Components/Banner-Dept_ta
         getBanners();
     }, [refresh]);
 
+    if (loading) {
+        return <Loader />;
+    }
     return (
         <div className="bannerlist">
             <Sidebar />
@@ -69,5 +82,4 @@ import BannerDeptTable from "../../../Components/Admin-Components/Banner-Dept_ta
     );
 };
 
-export default BannerList ;
-
+export default BannerList;

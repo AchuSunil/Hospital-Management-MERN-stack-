@@ -3,9 +3,9 @@ import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import swal from "sweetalert";
 import AXIOS from "../../../axios";
-import  DoctorForm  from "../../../Components/Admin-Components/Doctor-Form/DoctorForm";
+import DoctorForm from "../../../Components/Admin-Components/Doctor-Form/DoctorForm";
 
- const Datatable = (props) => {
+const Datatable = (props) => {
     let userColumns;
     if (props.user === "Doctor") {
         userColumns = [
@@ -120,9 +120,13 @@ import  DoctorForm  from "../../../Components/Admin-Components/Doctor-Form/Docto
         }).then(async (willBlock) => {
             if (willBlock) {
                 try {
+                    const adminInfo = localStorage.getItem("adminInfo");
+                    const info = JSON.parse(adminInfo);
+
                     const config = {
                         headers: {
                             "Content-type": "application/json",
+                            "x-access-token": info.token,
                         },
                     };
                     let confirm = {};
@@ -131,11 +135,10 @@ import  DoctorForm  from "../../../Components/Admin-Components/Doctor-Form/Docto
                     } else if (props.user === "Doctor") {
                         confirm.isDoctor = true;
                     }
-                  const response  = await AXIOS.post(`/admin/userBlock/${id}`, confirm, config);
-                        if (response.data.success) {
-                            props.setRefresh(!props.refresh);
-                        }
-                    
+                    const response = await AXIOS.post(`/admin/userBlock/${id}`, confirm, config);
+                    if (response.data.success) {
+                        props.setRefresh(!props.refresh);
+                    }
                 } catch (error) {
                     throw new error(error.response.data.message);
                 }
@@ -153,9 +156,13 @@ import  DoctorForm  from "../../../Components/Admin-Components/Doctor-Form/Docto
         }).then(async (willUnBlock) => {
             if (willUnBlock) {
                 try {
+                    const adminInfo = localStorage.getItem("adminInfo");
+                    const info = JSON.parse(adminInfo);
+
                     const config = {
                         headers: {
                             "Content-type": "application/json",
+                            "x-access-token": info.token,
                         },
                     };
                     let confirm = {};
@@ -164,11 +171,10 @@ import  DoctorForm  from "../../../Components/Admin-Components/Doctor-Form/Docto
                     } else if (props.user === "Doctor") {
                         confirm.isDoctor = true;
                     }
-                  const response = await AXIOS.post(`/admin/userUnBlock/${id}`, confirm, config);
-                        if (response.data.success) {
-                            props.setRefresh(!props.refresh);
-                        }
-                    
+                    const response = await AXIOS.post(`/admin/userUnBlock/${id}`, confirm, config);
+                    if (response.data.success) {
+                        props.setRefresh(!props.refresh);
+                    }
                 } catch (error) {
                     throw new error(error.response.data.message);
                 }
@@ -186,17 +192,20 @@ import  DoctorForm  from "../../../Components/Admin-Components/Doctor-Form/Docto
         }).then(async (willRemove) => {
             if (willRemove) {
                 try {
+                    const adminInfo = localStorage.getItem("adminInfo");
+                    const info = JSON.parse(adminInfo);
+
                     const config = {
                         headers: {
                             "Content-type": "application/json",
+                            "x-access-token": info.token,
                         },
                     };
-                   
-                 const response = await AXIOS.post(`/admin/removeDoctor/${id}`, config);
-                        if (response.data.removed) {
-                            props.setRefresh(!props.refresh);
-                        }
-                    
+
+                    const response = await AXIOS.post(`/admin/removeDoctor/${id}`, config);
+                    if (response.data.removed) {
+                        props.setRefresh(!props.refresh);
+                    }
                 } catch (error) {
                     throw new error(error.response.data.message);
                 }
